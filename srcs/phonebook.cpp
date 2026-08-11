@@ -6,7 +6,7 @@
 /*   By: lgervet <42@leogervet.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 16:04:14 by lgervet           #+#    #+#             */
-/*   Updated: 2026/08/11 18:05:48 by lgervet          ###   ########.fr       */
+/*   Updated: 2026/08/11 18:20:49 by lgervet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,22 @@ void Phonebook::addContact(
 	_oldest = (_oldest + 1) % 8;
 }
 
+std::string Phonebook::truncate(const std::string &str) const
+{
+	if (str.length() > 10)
+		return (str.substr(0, 9) + ".");
+	return (str);
+}
+
 void Phonebook::displayTable() const
 {
 	for (int i = 0; i < _count; i++)
 	{
 		std::cout << "|";
 		std::cout << std::setw(10) << i << "|";
-		std::cout << std::setw(10) << _contacts[i].getFirstName() << "|";
-		std::cout << std::setw(10) << _contacts[i].getLastName() << "|";
-		std::cout << std::setw(10) << _contacts[i].getNickName() << "|";
+		std::cout << std::setw(10) << truncate(_contacts[i].getFirstName()) << "|";
+		std::cout << std::setw(10) << truncate(_contacts[i].getLastName()) << "|";
+		std::cout << std::setw(10) << truncate(_contacts[i].getNickName()) << "|";
 		std::cout << std::endl;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: lgervet <42@leogervet.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 16:04:01 by lgervet           #+#    #+#             */
-/*   Updated: 2026/08/11 17:59:25 by lgervet          ###   ########.fr       */
+/*   Updated: 2026/08/11 18:16:13 by lgervet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ class Phonebook {
 		int _count;
 		int _oldest;
 
+		std::string truncate(const std::string &str) const;
 		void displayTable() const;
 		bool displayContact(int index) const;
 };
