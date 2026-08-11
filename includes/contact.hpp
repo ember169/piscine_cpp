@@ -6,36 +6,39 @@
 /*   By: lgervet <42@leogervet.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 16:03:58 by lgervet           #+#    #+#             */
-/*   Updated: 2026/08/11 16:08:29 by lgervet          ###   ########.fr       */
+/*   Updated: 2026/08/11 16:33:45 by lgervet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <std> 
+#ifndef CONTACT_HPP
+# define CONTACT_HPP
 
-#pragma once
-#ifndef CONTACT_H
-# define CONTACT_H
+# include <string>
 
 class Contact {
 	public:
 		Contact();
 		Contact(
-			const std::string	&_firstName,
-			const std::string	&_lastName,
-			const std::string	&_nickName,
-			const std::string	&_phoneNumber,
-			const std::string	&_darkestSecret
+			const std::string	&firstName,
+			const std::string	&lastName,
+			const std::string	&nickName,
+			const std::string	&phoneNumber,
+			const std::string	&darkestSecret
 		);
 		~Contact();
 
-		
+		const std::string &getFirstName() const;
+		const std::string &getLastName() const;
+		const std::string &getNickName() const;
+		const std::string &getPhoneNumber() const;
+		const std::string &getDarkestSecret() const;
 
 	private:
-		const std::string	_firstName;
-		const std::string	_lastName;
-		const std::string	_nickName;
-		const std::string	_phoneNumber;
-		const std::string	_darkestSecret;
+		std::string	_firstName;
+		std::string	_lastName;
+		std::string	_nickName;
+		std::string	_phoneNumber;
+		std::string	_darkestSecret;
 };
 
 #endif
