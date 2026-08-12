@@ -6,7 +6,7 @@
 /*   By: lgervet <42@leogervet.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 16:04:01 by lgervet           #+#    #+#             */
-/*   Updated: 2026/08/11 18:16:13 by lgervet          ###   ########.fr       */
+/*   Updated: 2026/08/12 16:22:33 by lgervet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ class Phonebook {
 			const std::string	phoneNumber,
 			const std::string	darkestSecret
 		);
-		void searchContact() const;
+		bool searchContact() const;
 
 	private:
 		Contact _contacts[8];
@@ -40,7 +40,8 @@ class Phonebook {
 
 		std::string truncate(const std::string &str) const;
 		void displayTable() const;
-		bool displayContact(int index) const;
+		void displayContact(int index) const;
+		bool isValidIndex(const std::string input) const;
 };
 
 #endif

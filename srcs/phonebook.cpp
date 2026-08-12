@@ -6,7 +6,7 @@
 /*   By: lgervet <42@leogervet.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/11 16:04:14 by lgervet           #+#    #+#             */
-/*   Updated: 2026/08/11 18:20:49 by lgervet          ###   ########.fr       */
+/*   Updated: 2026/08/12 16:24:49 by lgervet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,12 @@ std::string Phonebook::truncate(const std::string &str) const
 
 void Phonebook::displayTable() const
 {
+	std::cout << "|" << std::setw(10) << "index"
+			<< "|" << std::setw(10) << "first name"
+			<< "|" << std::setw(10) << "last name"
+			<< "|" << std::setw(10) << "nickname"
+			<< "|" << std::endl;
+ 
 	for (int i = 0; i < _count; i++)
 	{
 		std::cout << "|";
@@ -57,14 +63,44 @@ void Phonebook::displayTable() const
 	}
 }
 
-bool Phonebook::displayContact(int index) const
+void Phonebook::displayContact(int index) const
 {
-	if (index < 0 || index > 8)
+	if (index < 0 || index > _count)
+		return ;
+	std::cout << "First name    : " << _contacts[index].getFirstName() << std::endl;
+	std::cout << "Last name     : " << _contacts[index].getLastName() << std::endl;
+	std::cout << "Nickname      : " << _contacts[index].getNickName() << std::endl;
+	std::cout << "Phone number  : " << _contacts[index].getPhoneNumber() << std::endl;
+	std::cout << "Darkest secret: " << _contacts[index].getDarkestSecret() << std::endl;
+}
+
+bool Phonebook::isValidIndex(const std::string &input) const
+{
+	if (input.empty())
 		return (false);
-	std::cout << _contacts[index].getFirstName << std::endl;
-	std::cout << _contacts[index].getLastName << std::endl;
-	std::cout << _contacts[index].getNickName << std::endl;
-	std::cout << _contacts[index].getPhoneNumber << std::endl;
-	std::cout << _contacts[index].getDarkestSecret << std::endl;
+	for (std::string::size_type i = 0; i < input.length(); i++)
+	{
+		if (!std::isdigit(static_cast<unsigned char>(input[i])))
+			return (false);
+	}
+	int index = std::atoi(input.c_str());
+	return (index >= 0 && index < _count);
+}
+
+bool Phonebook::searchContact() const
+{
+	std::string	input;
+
+	displayTable();
+	std::cout << "Get information from Contact index number ";
+	if (!std::getline(std::cin, input))
+		return (false);
+	if (!isValidIndex(input))
+	{
+		std::cout << "Wrong index. Please try again." << std::endl;
+		return (true);
+	}
+	int index = std::atoi(input.c_str());
+	displayContact(index);
 	return (true);
 }
