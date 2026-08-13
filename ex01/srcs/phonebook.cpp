@@ -21,6 +21,41 @@ Phonebook::~Phonebook()
 	return ;
 }
 
+bool Phonebook::askField(const std::string &label, std::string &out)
+{
+	while (1)
+	{
+		std::cout << label << ": " << std::flush;
+		if (!std::getline(std::cin, out))
+			return (false);
+		if (!out.empty())
+			return (true);
+		std::cout << "This field cannot be empty." << std::endl;	
+	}
+}
+
+bool Phonebook::askContactInfo()
+{
+	std::string	firstName;
+	std::string	lastName;
+	std::string	nickName;
+	std::string	phoneNumber;
+	std::string	darkestSecret;
+
+	if (!askField("First name", firstName))
+		return (false);
+	if (!askField("Last name", lastName))
+		return (false);
+	if (!askField("Nickname", nickName))
+		return (false);
+	if (!askField("Phone number", phoneNumber))
+		return (false);
+	if (!askField("Darkest secret", darkestSecret))
+		return (false);
+	addContact(firstName, lastName, nickName, phoneNumber, darkestSecret);
+	return (true);
+}
+
 void Phonebook::addContact(
 	const std::string	&firstName,
 	const std::string	&lastName,
@@ -92,7 +127,7 @@ bool Phonebook::searchContact() const
 	std::string	input;
 
 	displayTable();
-	std::cout << "Get information from Contact index number ";
+	std::cout << "Get information from Contact index number " << std::flush;
 	if (!std::getline(std::cin, input))
 		return (false);
 	if (!isValidIndex(input))

@@ -16,28 +16,28 @@ int main(void)
 {
 	Phonebook	phonebook;
 	std::string	prompt;
-	std::string	firstName;
-	std::string	lastName;
-	std::string	nickName;
-	std::string	phoneNumber;
-	std::string	darkestSecret;
 
+	
 	while (1)
 	{
-		std::cout << "Simple Phonebook > " << std::endl;
-		std::getline(std::cin, prompt);
-
-		if (prompt.compare("EXIT"))
+		std::cout << "Simple Phonebook > " << std::flush;
+		if (!std::getline(std::cin, prompt))
+			break;
+		if (prompt == "EXIT")
 			break ;
-		else if (prompt.compare("ADD"))
+		else if (prompt == "ADD")
 		{
-			
+			if (!phonebook.askContactInfo())
+				break;
 		}
-		else if (prompt.compare("SEARCH"))
+		else if (prompt == "SEARCH")
 		{
-	
+			if (!phonebook.searchContact())
+				break;
 		}
 		else
-			std::cout << "Error: wrong input." << std::endl << std::cout "Please use \"ADD\", \"SEARCH\" or \"EXIT\"." << std::endl;
+			std::cout << "Error: wrong input. Please use \"ADD\", \"SEARCH\" or \"EXIT\"." << std::endl;
 	}
+	std::cout << "..." << std::endl;
+	return (0);
 }
