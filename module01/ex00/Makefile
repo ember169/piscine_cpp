@@ -1,21 +1,22 @@
-NAME		:= phonebook
+NAME		:= zombie
 CC			:= c++
 FLAGS		:= -Wall -Wextra -Werror -std=c++98
 INCLUDES	:= includes
 
 SRCS		:= \
-	srcs/contact.cpp \
-	srcs/phonebook.cpp \
+	srcs/newZombie.cpp \
+	srcs/randomChump.cpp \
+	srcs/Zombie.cpp \
 	srcs/main.cpp
 
 all:
 	$(CC) $(FLAGS) $(SRCS) -I $(INCLUDES) -o $(NAME)
 
 clean:
-	rm phonebook
+	rm zombie
 
 fclean:
-	rm phonebook
+	rm zombie
 
 re: fclean all
 	@MAKE fclean
